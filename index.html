@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiesta Pokémon de Christopher ⚡</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #fff176, #fbc02d, #f9a825);
+      overflow: hidden;
+      color: #333;
+    }
+
+    /* Pokémon flotando */
+    .floating {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .poke {
+  position: absolute;
+  animation: float linear infinite;
+  pointer-events: none;
+}
+
+
+    .container {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 30px;
+      max-width: 520px;
+      width: 100%;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+      animation: pop 1s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #f57f17;
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: #616161;
+    }
+
+    .pikachu-img {
+  width: 180px;
+  animation: jump 1.2s infinite alternate;
+  margin: 10px auto;
+  display: block;
+}
+
+
+    .info {
+      background: #fffde7;
+      border-radius: 20px;
+      padding: 15px;
+      margin: 15px 0;
+      font-size: 1rem;
+    }
+
+    .info p { margin: 8px 0; }
+
+    .highlight { font-weight: 700; color: #f57f17; }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 22px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #fbc02d, #f57f17);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .secret {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      animation: fade 1s ease forwards;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes float {
+  from {
+    transform: translateY(110vh) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="floating"></div>
+
+  <div class="container">
+    <div class="card">
+      <div class="title">⚡ Fiesta Pokémon ⚡</div>
+      <div class="subtitle">¡Christopher cumple 8 años!</div>
+
+      <img src="images/pikachu.jpg" class="pikachu-img" alt="Pikachu">
+
+
+      <div class="info">
+        <p>🎂 <span class="highlight">Edad:</span> 8 años</p>
+        <p>📅 <span class="highlight">Fecha:</span> 20 de diciembre</p>
+        <p>📍 <span class="highlight">Lugar:</span><br>Salón comunal – Conjunto Casas del Campo</p>
+        <p>🎉 <span class="highlight">Hora:</span> 2:00 pm</p>
+      </div>
+
+      <div class="buttons">
+        <button onclick="showSecret()">🎁 ¡Sorpresa!</button>
+      </div>
+
+      <div class="secret" id="secret">
+        ¡Prepárate para atrapar Pokémon, jugar, comer torta y pasarla increíble! 🎮🍰⚡
+      </div>
+
+      <footer>
+        ¡No faltes, será una aventura legendaria! 🌟
+      </footer>
+    </div>
+  </div>
+
+  <script>
+  function showSecret() {
+    document.getElementById('secret').style.display = 'block';
+  }
+
+  const floating = document.querySelector('.floating');
+
+  const pokes = [
+    'images/pika.jpg',
+    'images/pikach.jpg',
+    'images/pikachu2.jpg'
+  ];
+
+  function createPoke() {
+    const img = document.createElement('img');
+    img.className = 'poke';
+    img.src = pokes[Math.floor(Math.random() * pokes.length)];
+    img.style.left = Math.random() * 100 + 'vw';
+    img.style.width = 40 + Math.random() * 40 + 'px';
+    img.style.animationDuration = 6 + Math.random() * 6 + 's';
+    floating.appendChild(img);
+    setTimeout(() => img.remove(), 12000);
+  }
+
+  setInterval(createPoke, 400);
+</script>
+
+</body>
+</html>
